@@ -1,0 +1,85 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.lovechedule'
+version = '0.0.1-SNAPSHOT'
+description = 'lovechedule-api'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // Databases
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    // OpenFeign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.openfeign:feign-httpclient:12.5'
+
+    // Logging & Monitoring
+    implementation 'com.github.maricn:logback-slack-appender:1.6.1'
+    implementation 'com.slack.api:slack-api-client:1.44.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'com.github.loki4j:loki-logback-appender:1.5.1'
+
+    // JWT (JJWT 최신)
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    runtimeOnly   'io.jsonwebtoken:jjwt-impl:0.12.6'
+    runtimeOnly   'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
+    // springdoc-openapi
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6'
+
+    implementation 'org.apache.commons:commons-lang3:3.19.0'
+
+    // Retry
+    implementation 'org.springframework.retry:spring-retry:2.0.7'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+ext {
+    set('springCloudVersion', "2025.0.0")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
