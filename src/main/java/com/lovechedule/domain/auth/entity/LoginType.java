@@ -1,7 +1,6 @@
 package com.lovechedule.domain.auth.entity;
 
-public enum SocialType {
-    EMAIL,
+public enum LoginType {
     KAKAO,
     GOOGLE,
     FACEBOOK,

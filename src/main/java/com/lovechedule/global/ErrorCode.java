@@ -13,6 +13,10 @@ public enum ErrorCode {
     TOKEN_INVALID(HttpStatus.UNAUTHORIZED, "A004", "Invalid token"),
     TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "A005", "Token expired"),
 
+    // 로그인
+    PASSWORD_MISMATCH(HttpStatus.BAD_REQUEST, "A006", "Password mismatch"),
+    SOCIAL_LOGIN_FAILED(HttpStatus.BAD_REQUEST, "A007", "Social login failed"),
+
     // 사용자/권한/역할
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U001", "User not found"),
     DUPLICATE_EMAIL(HttpStatus.CONFLICT, "U002", "Email already exists"),

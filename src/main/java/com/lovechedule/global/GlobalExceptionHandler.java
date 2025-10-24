@@ -34,6 +34,7 @@ public class GlobalExceptionHandler {
                         fe -> fe.getDefaultMessage() == null ? "invalid" : fe.getDefaultMessage(),
                         (a, b) -> a
                 ));
+
         var code = ErrorCode.VALIDATION_ERROR;
         return ResponseEntity
                 .status(code.getHttpStatus())

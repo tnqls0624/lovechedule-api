@@ -8,14 +8,18 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.*;
 
 import java.time.Instant;
+import java.util.Date;
 
 @Document(collection = "users")
-@Data @Builder
-@NoArgsConstructor @AllArgsConstructor
+@Data
+@Builder
 public class User {
 
     @Id
     private String id;
+
+    @NotBlank
+    private String login_type;
 
     @NotBlank
     @Email
@@ -28,31 +32,31 @@ public class User {
     // EMAIL 로그인 타입에서만 사용 (nullable)
     private String password;
 
-    @Builder.Default
-    private SocialType loginType = SocialType.EMAIL;  // default: EMAIL
-
     private String gender;       // optional
+
     private String birthday;     // optional(문자열로 동일 대응)
 
     @NotBlank
     @Indexed                         // index: true
-    private String inviteCode;
+    private String invite_code;
+
+    private String thumbnail_image;
 
     @Indexed                         // index: true
     private String fcmToken;
 
     @Builder.Default
-    private boolean pushEnabled = true;
+    private boolean push_enabled = true;
 
     @Builder.Default
-    private boolean scheduleAlarm = true;
+    private boolean schedule_alarm = true;
 
     @Builder.Default
-    private boolean anniversaryAlarm = true;
+    private boolean anniversary_alarm = true;
 
     @CreatedDate
-    private Instant createdAt;
+    private Date createdAt;
 
     @LastModifiedDate
-    private Instant updatedAt;
+    private Date updatedAt;
 }

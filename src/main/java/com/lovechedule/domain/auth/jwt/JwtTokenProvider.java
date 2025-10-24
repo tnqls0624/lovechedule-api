@@ -80,7 +80,7 @@ public class JwtTokenProvider {
     }
 
     /** username 추출 */
-    public String getUsername(String token) {
+    public String getEmail(String token) {
         return Jwts.parser()
                 .verifyWith(publicKey)
                 .build()

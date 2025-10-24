@@ -18,11 +18,11 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:1234@localhost:27017/lovechedule?authSource=admin
-      uuid-representation: standard
+      auto-index-creation: true
 
   mvc:
     problemdetails:
-      enabled: true
+      enabled: false
 
 #  web:
 #    cors:
